@@ -55,6 +55,16 @@ class _CounterPageState extends State<CounterPage> {
     return current + 1;
   }
 
+  void runConditionalBreakpointDemo() {
+    for (var i = 0; i < 100; i++) {
+      calculate(i);
+    }
+  }
+
+  int calculate(int value) {
+    return value * 2;
+  }
+
   void _writeLogs() {
     // ignore: avoid_print
     print('print log');
@@ -100,6 +110,10 @@ class _CounterPageState extends State<CounterPage> {
             ElevatedButton(
               onPressed: handleErrorButton,
               child: const Text('Throw Test Exception'),
+            ),
+            ElevatedButton(
+              onPressed: runConditionalBreakpointDemo,
+              child: const Text('Run Conditional Breakpoint Demo'),
             ),
           ],
         ),
