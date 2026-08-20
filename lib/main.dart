@@ -110,6 +110,10 @@ class _CounterPageState extends State<CounterPage> {
     );
   }
 
+  void runSlowWorkDemo() {
+    runIntentionallySlowUiWork();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,7 +166,7 @@ class _CounterPageState extends State<CounterPage> {
                   child: const Text('Calculate Price'),
                 ),
                 ElevatedButton(
-                  onPressed: runIntentionallySlowUiWork,
+                  onPressed: runSlowWorkDemo,
                   child: const Text('Run Slow UI Work'),
                 ),
               ],
