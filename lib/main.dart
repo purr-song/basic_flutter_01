@@ -49,6 +49,15 @@ class _CounterPageState extends State<CounterPage> {
     });
   }
 
+  void _writeLogs() {
+    // ignore: avoid_print
+    print('print log');
+    debugPrint('debugPrint log');
+    if (kDebugMode) {
+      debugPrint('debug only');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +77,11 @@ class _CounterPageState extends State<CounterPage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _writeLogs,
+              child: const Text('Write Logs'),
             ),
           ],
         ),
