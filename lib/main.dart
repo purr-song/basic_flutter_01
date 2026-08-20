@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:seminar_utils/seminar_utils.dart';
 
 void main() {
   debugPrint('main');
@@ -98,16 +99,13 @@ class _CounterPageState extends State<CounterPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/flutter_logo.png',
-              width: 160,
-            ),
+            Image.asset('assets/images/flutter_logo.png', width: 160),
             const SizedBox(height: 24),
             Text('Current mode: $_buildMode'),
             const SizedBox(height: 8),
             const Text('Current Count'),
             Text(
-              '$_counter',
+              SeminarFormatter.counterText(_counter),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 16),
