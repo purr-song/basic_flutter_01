@@ -43,10 +43,16 @@ class _CounterPageState extends State<CounterPage> {
     debugPrint('initState');
   }
 
-  void _incrementCounter() {
+  void increment() {
+    final next = calculateNextValue(_counter);
+
     setState(() {
-      _counter++;
+      _counter = next;
     });
+  }
+
+  int calculateNextValue(int current) {
+    return current + 1;
   }
 
   void _writeLogs() {
@@ -99,7 +105,7 @@ class _CounterPageState extends State<CounterPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: increment,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
