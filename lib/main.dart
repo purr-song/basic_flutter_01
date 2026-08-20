@@ -104,6 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
+            Image.asset(
+              'assets/images/flutter_logo.png',
+              width: 160,
+            ),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
