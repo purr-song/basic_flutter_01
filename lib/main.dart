@@ -58,6 +58,14 @@ class _CounterPageState extends State<CounterPage> {
     }
   }
 
+  void handleErrorButton() {
+    throwTestException();
+  }
+
+  void throwTestException() {
+    throw Exception('Seminar test exception');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +90,10 @@ class _CounterPageState extends State<CounterPage> {
             ElevatedButton(
               onPressed: _writeLogs,
               child: const Text('Write Logs'),
+            ),
+            ElevatedButton(
+              onPressed: handleErrorButton,
+              child: const Text('Throw Test Exception'),
             ),
           ],
         ),
