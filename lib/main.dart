@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,6 +30,13 @@ class CounterPage extends StatefulWidget {
 class _CounterPageState extends State<CounterPage> {
   int _counter = 0;
 
+  String get _buildMode {
+    if (kDebugMode) return 'Debug';
+    if (kProfileMode) return 'Profile';
+    if (kReleaseMode) return 'Release';
+    return 'Unknown';
+  }
+
   @override
   void initState() {
     super.initState();
@@ -54,6 +62,8 @@ class _CounterPageState extends State<CounterPage> {
               width: 160,
             ),
             const SizedBox(height: 24),
+            Text('Current mode: $_buildMode'),
+            const SizedBox(height: 8),
             const Text('Current Count'),
             Text(
               '$_counter',
