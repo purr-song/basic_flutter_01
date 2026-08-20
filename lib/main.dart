@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
+  debugPrint('main');
   runApp(const MyApp());
 }
 
@@ -27,6 +28,12 @@ class CounterPage extends StatefulWidget {
 
 class _CounterPageState extends State<CounterPage> {
   int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint('initState');
+  }
 
   void _incrementCounter() {
     setState(() {
