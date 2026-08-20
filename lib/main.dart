@@ -65,6 +65,14 @@ class _CounterPageState extends State<CounterPage> {
     return value * 2;
   }
 
+  void calculatePrice() {
+    final price = 10000;
+    final discount = 0.2;
+    final result = price * (1 - discount);
+
+    debugPrint('$result');
+  }
+
   void _writeLogs() {
     // ignore: avoid_print
     print('print log');
@@ -114,6 +122,10 @@ class _CounterPageState extends State<CounterPage> {
             ElevatedButton(
               onPressed: runConditionalBreakpointDemo,
               child: const Text('Run Conditional Breakpoint Demo'),
+            ),
+            ElevatedButton(
+              onPressed: calculatePrice,
+              child: const Text('Calculate Price'),
             ),
           ],
         ),
