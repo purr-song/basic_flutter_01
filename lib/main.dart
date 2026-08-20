@@ -95,37 +95,46 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Basic Seminar')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/flutter_logo.png', width: 160),
-            const SizedBox(height: 24),
-            Text('Current mode: $_buildMode'),
-            const SizedBox(height: 8),
-            const Text('Current Count'),
-            Text(
-              SeminarFormatter.counterText(_counter),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _writeLogs,
-              child: const Text('Write Logs'),
-            ),
-            ElevatedButton(
-              onPressed: handleErrorButton,
-              child: const Text('Throw Test Exception'),
-            ),
-            ElevatedButton(
-              onPressed: runConditionalBreakpointDemo,
-              child: const Text('Run Conditional Breakpoint Demo'),
-            ),
-            ElevatedButton(
-              onPressed: calculatePrice,
-              child: const Text('Calculate Price'),
-            ),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/flutter_logo.png', width: 160),
+              const SizedBox(height: 24),
+              Text('Current mode: $_buildMode'),
+              const SizedBox(height: 8),
+              const Text('Current Count'),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 8,
+                ),
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: Text(
+                  SeminarFormatter.counterText(_counter),
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _writeLogs,
+                child: const Text('Write Logs'),
+              ),
+              ElevatedButton(
+                onPressed: handleErrorButton,
+                child: const Text('Throw Test Exception'),
+              ),
+              ElevatedButton(
+                onPressed: runConditionalBreakpointDemo,
+                child: const Text('Run Conditional Breakpoint Demo'),
+              ),
+              ElevatedButton(
+                onPressed: calculatePrice,
+                child: const Text('Calculate Price'),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
