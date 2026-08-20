@@ -91,57 +91,82 @@ class _CounterPageState extends State<CounterPage> {
     throw Exception('Seminar test exception');
   }
 
+  void runIntentionallySlowUiWork() {
+    final stopwatch = Stopwatch()..start();
+    var checksum = 0;
+
+    // Educational demo only:
+    // deliberately blocks the UI isolate for about 80 ms.
+    while (stopwatch.elapsedMilliseconds < 80) {
+      checksum = (checksum + stopwatch.elapsedMicroseconds) % 1000003;
+    }
+
+    stopwatch.stop();
+
+    debugPrint(
+      'Slow UI work: '
+      '${stopwatch.elapsedMilliseconds} ms '
+      '($checksum)',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Basic Seminar')),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/flutter_logo.png', width: 160),
-              const SizedBox(height: 24),
-              Text('Current mode: $_buildMode'),
-              const SizedBox(height: 8),
-              const Text('Current Count'),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 8,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/flutter_logo.png', width: 160),
+                const SizedBox(height: 24),
+                Text('Current mode: $_buildMode'),
+                const SizedBox(height: 8),
+                const Text('Current Count'),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 8,
+                  ),
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: Text(
+                    SeminarFormatter.counterText(_counter),
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
                 ),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: Text(
-                  SeminarFormatter.counterText(_counter),
-                  style: Theme.of(context).textTheme.headlineMedium,
+                const SizedBox(height: 16),
+                Container(
+                  width: 200,
+                  height: 100,
+                  padding: const EdgeInsets.all(16),
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  child: const Text('Hello Flutter'),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                width: 200,
-                height: 100,
-                padding: const EdgeInsets.all(16),
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                child: const Text('Hello Flutter'),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: _writeLogs,
-                child: const Text('Write Logs'),
-              ),
-              ElevatedButton(
-                onPressed: handleErrorButton,
-                child: const Text('Throw Test Exception'),
-              ),
-              ElevatedButton(
-                onPressed: runConditionalBreakpointDemo,
-                child: const Text('Run Conditional Breakpoint Demo'),
-              ),
-              ElevatedButton(
-                onPressed: calculatePrice,
-                child: const Text('Calculate Price'),
-              ),
-            ],
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _writeLogs,
+                  child: const Text('Write Logs'),
+                ),
+                ElevatedButton(
+                  onPressed: handleErrorButton,
+                  child: const Text('Throw Test Exception'),
+                ),
+                ElevatedButton(
+                  onPressed: runConditionalBreakpointDemo,
+                  child: const Text('Run Conditional Breakpoint Demo'),
+                ),
+                ElevatedButton(
+                  onPressed: calculatePrice,
+                  child: const Text('Calculate Price'),
+                ),
+                ElevatedButton(
+                  onPressed: runIntentionallySlowUiWork,
+                  child: const Text('Run Slow UI Work'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
