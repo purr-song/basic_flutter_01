@@ -117,6 +117,14 @@ class _CounterPageState extends State<CounterPage> {
                 ),
               ),
               const SizedBox(height: 16),
+              Container(
+                width: 200,
+                height: 100,
+                padding: const EdgeInsets.all(16),
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                child: const Text('Hello Flutter'),
+              ),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _writeLogs,
                 child: const Text('Write Logs'),
